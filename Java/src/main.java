@@ -1,7 +1,7 @@
 /**
  * Created by Daniel on 28.03.2015.
  */
-public class Java {
+public class main {
     public static void main(String[] args)
     {
         System.out.println("Hello World");

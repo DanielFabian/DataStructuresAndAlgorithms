@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(cpp)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -march=x86-64")
 
-set(SOURCE_FILES main.cpp)
+AUX_SOURCE_DIRECTORY(. SOURCE_FILES)
 add_executable(cpp ${SOURCE_FILES})

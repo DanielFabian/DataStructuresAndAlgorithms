@@ -20,7 +20,7 @@ public class main {
         }
     }
 
-    private static long sum_of_n(int n)
+    public static long sum_of_n(int n)
     {
         long res = 0;
         for (int i = 1; i <= n; i++) {

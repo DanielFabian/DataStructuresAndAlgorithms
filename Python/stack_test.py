@@ -43,6 +43,8 @@ class TestMain(unittest.TestCase):
     def test_size(self):
         stack = Stack()
 
+        self.assertEquals(stack.size(), 0)
+
         stack.push(1)
         stack.push("two")
 

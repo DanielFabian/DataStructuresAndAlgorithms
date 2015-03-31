@@ -1,4 +1,4 @@
-﻿module MainTest
+﻿module FSharp.MainTest
 
 open FsUnit
 open NUnit.Framework

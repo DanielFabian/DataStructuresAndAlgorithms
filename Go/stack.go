@@ -1,4 +1,7 @@
 package main
+import (
+    "fmt"
+)
 
 type Stack struct  {
     data []interface{}
@@ -42,4 +45,19 @@ func checkParentheses (str string) bool {
     }
 
     return stack.isEmpty()
+}
+
+func toBinary(num int) string {
+    stack := new(Stack)
+    for num > 0 {
+        stack.push(num % 2)
+        num /= 2
+    }
+
+    res := ""
+    for !stack.isEmpty() {
+        res += fmt.Sprint(stack.pop())
+    }
+
+    return res
 }

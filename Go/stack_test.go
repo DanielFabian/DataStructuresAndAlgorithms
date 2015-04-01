@@ -81,3 +81,10 @@ public:
         }
     }
 }
+
+func Test_toBinary(t *testing.T) {
+    actual := toBinary(233)
+    if actual != "11101001" {
+        t.Errorf("wrong binary transform: %s, expected 11101001", actual)
+    }
+}

@@ -58,3 +58,8 @@ public:
     tests
     |> List.iter (fun (expected, input) ->
         checkParentheses input |> should equal expected)
+
+let [<Test>] toBinary () =
+    233 |> toBinary |> should equal "11101001"
+    
+

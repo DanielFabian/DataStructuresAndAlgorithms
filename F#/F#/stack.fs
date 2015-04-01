@@ -26,3 +26,17 @@ let checkParentheses str =
             if c = '<' then stack.push '>'
             true
     ) && stack.isEmpty
+
+let toBinary num =
+    let stack = Stack()
+    let rec consume = function
+        | 0 -> ()
+        | n -> stack.push (n % 2); consume (n / 2)
+    
+    consume num
+
+    let rec buildString str =
+        if stack.isEmpty then str
+        else buildString (str + stack.pop().ToString())
+
+    buildString ""

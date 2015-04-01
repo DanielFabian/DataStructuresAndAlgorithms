@@ -26,3 +26,20 @@ func (s *Stack) pop() interface{} {
 func (s *Stack) isEmpty() bool {
     return len(s.data) == 0
 }
+
+func checkParentheses (str string) bool {
+    stack := new(Stack);
+    for _, c := range str {
+        if c == ')' || c == ']' || c == '}' || c == '>' {
+            if stack.isEmpty() || stack.pop() != c {
+                return false;
+            }
+        }
+        if c == '(' { stack.push(')') }
+        if c == '[' { stack.push(']') }
+        if c == '{' { stack.push('}') }
+        if c == '<' { stack.push('>') }
+    }
+
+    return stack.isEmpty()
+}

@@ -10,7 +10,7 @@ using namespace std;
 using namespace std::chrono;
 
 int main() {
-    
+
     testPop();
     testPush();
     testIsEmpty();

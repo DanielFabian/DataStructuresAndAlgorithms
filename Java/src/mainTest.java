@@ -2,6 +2,7 @@ import com.google.common.base.Stopwatch;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ public class mainTest {
 
     @Test
     public void test_sum_of_n() throws Exception {
-        Assert.assertEquals(main.sum_of_n(10), 55);
+        assertEquals(main.sum_of_n(10), 55);
     }
 
     @Test
@@ -37,6 +38,39 @@ public class mainTest {
         }
         else {
             System.out.printf("%s, iterations %d, %d ns/op", name, n, (int) averageTime);
+        }
+    }
+
+    @Test
+    public void testCheckParentheses() throws Exception {
+        ArrayList<Boolean> expected = new ArrayList<>();
+        ArrayList<String> input = new ArrayList<>();
+        expected.add(true); input.add("() [] () ([]()[])");
+        expected.add(true); input.add("(()()()())");
+        expected.add(true); input.add("(()((())()))");
+        expected.add(true); input.add(
+                "#pragma once\n" +
+                "#include <vector>\n" +
+                "#include <cstdlib>\n" +
+                "\n" +
+                "template <class T>\n" +
+                "class stack {\n" +
+                "    private:\n" +
+                "        std::vector<T> data;\n" +
+                "    public:\n" +
+                "        void push(const T& item);\n" +
+                "        T pop();\n" +
+                "        T peek();\n" +
+                "        bool isEmpty();\n" +
+                "        size_t size();\n" +
+                "};\n");
+        expected.add(false); input.add("( (] ([)]");
+        expected.add(false); input.add("((((((())");
+        expected.add(false); input.add("()))");
+        expected.add(false); input.add("(()()(()");
+
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(main.checkParentheses(input.get(i)), expected.get(i));
         }
     }
 }

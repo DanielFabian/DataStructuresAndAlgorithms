@@ -29,4 +29,19 @@ public class main {
 
         return res;
     }
+
+    public static boolean checkParentheses(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (Character c : str.toCharArray()) {
+            if (c == ')' || c == ']' || c == '}' || c == '>') {
+                if (stack.isEmpty() || stack.pop() != c)
+                    return false;
+            }
+            if (c == '(') stack.push(')');
+            if (c == '[') stack.push(']');
+            if (c == '{') stack.push('}');
+            if (c == '<') stack.push('>');
+        }
+        return stack.isEmpty();
+    }
 }

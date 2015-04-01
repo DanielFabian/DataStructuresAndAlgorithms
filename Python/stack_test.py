@@ -1,8 +1,7 @@
 import unittest
-from stack import Stack, check_parentheses
+from stack import *
 
 __author__ = 'Daniel'
-
 
 
 class TestMain(unittest.TestCase):
@@ -11,45 +10,45 @@ class TestMain(unittest.TestCase):
         stack.push(1)
         stack.push("two")
         stack.push(3.0)
-        self.assertEquals(stack.items, [1, "two", 3.0])
+        self.assertEquals([1, "two", 3.0], stack.items)
 
     def test_peek(self):
         stack = Stack()
         stack.push(1)
         stack.push("two")
-        self.assertEquals(stack.items, [1, "two"])
+        self.assertEquals([1, "two"], stack.items)
 
-        self.assertEquals(stack.peek(), "two")
+        self.assertEquals("two", stack.peek())
 
-        self.assertEquals(stack.items, [1, "two"])
+        self.assertEquals([1, "two"], stack.items)
 
     def test_pop(self):
         stack = Stack()
         stack.push(1)
         stack.push("two")
-        self.assertEquals(stack.items, [1, "two"])
+        self.assertEquals([1, "two"], stack.items)
 
-        self.assertEquals(stack.pop(), "two")
+        self.assertEquals("two", stack.pop())
 
-        self.assertEquals(stack.items, [1])
+        self.assertEquals([1], stack.items)
 
     def test_is_empty(self):
         stack = Stack()
-        self.assertEquals(stack.is_empty(), True)
+        self.assertEquals(True, stack.is_empty())
 
         stack.push(1)
 
-        self.assertEquals(stack.is_empty(), False)
+        self.assertEquals(False, stack.is_empty())
 
     def test_size(self):
         stack = Stack()
 
-        self.assertEquals(stack.size(), 0)
+        self.assertEquals(0, stack.size())
 
         stack.push(1)
         stack.push("two")
 
-        self.assertEquals(stack.size(), 2)
+        self.assertEquals(2, stack.size())
 
     def test_parentheses(self):
         tests = [
@@ -78,4 +77,7 @@ public:
         ]
 
         for (exp, inp) in tests:
-            self.assertEquals(exp, check_parentheses(inp), inp)
+            self.assertEquals(check_parentheses(inp), exp, inp)
+
+    def test_to_binary(self):
+        self.assertEquals("11101001", to_binary(233))

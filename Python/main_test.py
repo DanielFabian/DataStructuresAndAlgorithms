@@ -13,7 +13,7 @@ def print_benchmark(name, elapsed, n):
 
 class TestMain(unittest.TestCase):
     def test_sum_of_n(self):
-        self.assertEquals(sum_of_n(10000), 50005000)
+        self.assertEquals(50005000, sum_of_n(10000))
 
     def test_benchmark_sum_of_n(self):
         n = 100

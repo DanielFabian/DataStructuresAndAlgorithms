@@ -37,3 +37,16 @@ def check_parentheses(inp):
         if c == '<':
             stack.push('>')
     return stack.is_empty()
+
+
+def to_binary(num):
+    stack = Stack()
+    while num > 0:
+        stack.push(num % 2)
+        num /= 2
+
+    res = ""
+    while not stack.is_empty():
+        res += str(stack.pop())
+
+    return res

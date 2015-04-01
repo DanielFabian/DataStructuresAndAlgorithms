@@ -48,3 +48,5 @@ bool stack<T>::isEmpty() {
 }
 
 bool checkParentheses(std::string str);
+
+std::string toBinary(int num);

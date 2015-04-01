@@ -14,4 +14,5 @@ void testPush();
 void testPop();
 void testSize();
 void testIsEmpty();
+void testToBinary();
 

@@ -17,6 +17,8 @@ int main() {
     testSize();
 
     testCheckParentheses();
+
+    testToBinary();
     return 0;
 }
 
@@ -128,5 +130,11 @@ void testCheckParentheses() {
         assert(checkParentheses(get<1>(test)) == get<0>(test));
     }
 
-    cout << "testCheckParentheses passed";
+    cout << "testCheckParentheses passed" << endl;
+}
+
+void testToBinary() {
+    assert(toBinary(233) == "11101001");
+
+    cout << "testToBinary passed" << endl;
 }

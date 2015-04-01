@@ -1,4 +1,4 @@
-﻿namespace FSharp.Stack
+﻿module FSharp.Stack
 
 type Stack<'T>() =
     let data = ResizeArray<'T>()
@@ -12,3 +12,17 @@ type Stack<'T>() =
         data.RemoveAt idx
         res
     member this.size = data.Count
+
+let checkParentheses str =
+    let stack = Stack()
+    str
+    |> String.forall(fun c ->
+        if c = ')' || c = ']' || c = '}' || c = '>' then
+            not stack.isEmpty && stack.pop() = c
+        else
+            if c = '(' then stack.push ')'
+            if c = '[' then stack.push ']'
+            if c = '{' then stack.push '}'
+            if c = '<' then stack.push '>'
+            true
+    ) && stack.isEmpty

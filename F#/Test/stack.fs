@@ -27,3 +27,34 @@ let [<Test>] ``isEmpty should be correct`` () =
     testee.isEmpty |> should equal true
     testee.push 1
     testee.isEmpty |> should equal false
+
+let [<Test>] checkParentheses() =
+    let tests =
+        [
+            true, "() [] () ([]()[])"
+            true, "(()()()())"
+            true, "(()((())()))"
+            true, @"#pragma once
+#include <vector>
+#include <cstdlib>
+
+template <class T>
+class stack {
+private:
+    std::vector<T> data;
+public:
+    void push(const T& item);
+    T pop();
+    T peek();
+    bool isEmpty();
+    size_t size();
+};"
+            false, "( (] ([)]"
+            false, "((((((())"
+            false, "()))"
+            false, "(()()(()"
+        ]
+
+    tests
+    |> List.iter (fun (expected, input) ->
+        checkParentheses input |> should equal expected)

@@ -20,3 +20,20 @@ class Stack():
 
     def peek(self):
         return self.items[len(self.items) - 1]
+
+
+def check_parentheses(inp):
+    stack = Stack()
+    for c in inp:
+        if c == ')' or c == ']' or c == '}' or c == '>':
+            if stack.is_empty() or stack.pop() != c:
+                return False
+        if c == '(':
+            stack.push(')')
+        if c == '[':
+            stack.push(']')
+        if c == '{':
+            stack.push('}')
+        if c == '<':
+            stack.push('>')
+    return stack.is_empty()

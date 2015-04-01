@@ -1,5 +1,4 @@
 import com.google.common.base.Stopwatch;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class mainTest {
 
     @Test
     public void test_sum_of_n() throws Exception {
-        assertEquals(main.sum_of_n(10), 55);
+        assertEquals(55, main.sum_of_n(10));
     }
 
     @Test
@@ -70,7 +69,13 @@ public class mainTest {
         expected.add(false); input.add("(()()(()");
 
         for (int i = 0; i < expected.size(); i++) {
-            assertEquals(main.checkParentheses(input.get(i)), expected.get(i));
+            assertEquals(expected.get(i), main.checkParentheses(input.get(i)));
         }
     }
+
+    @Test
+    public void testToBinary() {
+        assertEquals("11101001", main.toBinary(233));
+    }
+
 }

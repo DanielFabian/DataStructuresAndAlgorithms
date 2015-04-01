@@ -44,4 +44,19 @@ public class main {
         }
         return stack.isEmpty();
     }
+
+    static String toBinary(int num) {
+        Stack<Integer> stack = new Stack<>();
+        while (num > 0) {
+            stack.push(num % 2);
+            num /= 2;
+        }
+
+        String res = "";
+        while (!stack.isEmpty()) {
+            res += stack.pop().toString();
+        }
+
+        return res;
+    }
 }

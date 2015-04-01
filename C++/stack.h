@@ -5,6 +5,7 @@
 #pragma once
 #include <vector>
 #include <cstdlib>
+#include <string>
 
 template <class T>
 class stack {
@@ -45,3 +46,5 @@ template <class T>
 bool stack<T>::isEmpty() {
     return data.empty();
 }
+
+bool checkParentheses(std::string str);

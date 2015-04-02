@@ -16,4 +16,5 @@ void testSize();
 void testIsEmpty();
 void testToBinary();
 void testToBase();
+void testToPostfix();
 

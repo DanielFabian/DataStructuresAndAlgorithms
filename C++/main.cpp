@@ -147,3 +147,11 @@ void testToBase() {
 
     cout << "testToBase passed" << endl;
 }
+
+void testToPostfix() {
+//    assert(toPostfix("") == "");
+//    assert(toPostfix("") == "");
+//    assert(toPostfix("") == "");
+
+    cout << "testToPostfix passed" << endl;
+}

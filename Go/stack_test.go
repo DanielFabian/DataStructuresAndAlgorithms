@@ -103,3 +103,18 @@ func Test_toBase(t *testing.T) {
         }
     }
 }
+
+func Test_toPostfix(t *testing.T) {
+    tests := [] struct { inp, exp string } {
+        { "( A + B ) * ( C + D )", "A B + C D + *" },
+        { "( A + B ) * C", "A B + C *" },
+        { "A + B * C", "A B C * +" },
+    }
+
+    for _, test := range tests {
+        actual := toPostfix(test.inp)
+        if actual != test.exp {
+            t.Errorf("wrong to postfix transform: toPostfix(\"%s\") = \"%s\", expected \"%s\"", test.inp, actual, test.exp)
+        }
+    }
+}

@@ -67,3 +67,10 @@ let [<Test>] toBase () =
     233 |> toBase 8 |> should equal "351"
     233 |> toBase 16 |> should equal "E9"
     
+let [<Test>] toPostfix () =
+    "( A + B ) * ( C + D )" |> toPostfix |> should equal "A B + C D + *"
+    "( A + B ) * C" |> toPostfix |> should equal "A B + C *"
+    "A + B * C" |> toPostfix |> should equal "A B C * +"
+
+
+

@@ -85,4 +85,11 @@ public class mainTest {
         assertEquals("E9", main.toBase(233, 16));
     }
 
+    @Test
+    public void testToPostfix() {
+        assertEquals("A B + C D + *", main.toPostfix("( A + B ) * ( C + D )"));
+        assertEquals("A B + C *", main.toPostfix("( A + B ) * C"));
+        assertEquals("A B C * +", main.toPostfix("A + B * C"));
+    }
+
 }

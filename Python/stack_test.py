@@ -86,3 +86,8 @@ public:
         self.assertEquals("11101001", to_base(233, 2))
         self.assertEquals("351", to_base(233, 8))
         self.assertEquals("E9", to_base(233, 16))
+
+    def test_to_postfix(self):
+        self.assertEquals("A B + C D + *", to_postfix("( A + B ) * ( C + D )"))
+        self.assertEquals("A B + C *", to_postfix("( A + B ) * C"))
+        self.assertEquals("A B C * +", to_postfix("A + B * C"))

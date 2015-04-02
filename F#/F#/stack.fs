@@ -43,3 +43,48 @@ let toBase b num =
     buildString ""
 
 let toBinary = toBase 2
+
+let toPostfix str =
+    let tokens = (str : string).Split ' '
+    let operators = Stack()
+    let res = ResizeArray()
+
+    let prec =
+        function
+        | "+" | "-" -> 1
+        | "*" | "/" -> 2
+        | _ -> 0
+
+    tokens
+    |> Array.iter(
+        function
+        | "(" -> operators.push "("
+        | ")" ->
+            let rec loop op =
+                if op <> "(" then
+                    res.Add op
+                    loop <| operators.pop()
+
+            loop <| operators.pop()
+        | "+" | "-" | "*" | "/" as op -> 
+            while not operators.isEmpty && prec op <= prec (operators.peek()) do
+                res.Add (operators.pop())
+            operators.push op          
+        | operand -> res.Add operand)
+
+    while not operators.isEmpty do
+        res.Add(operators.pop())
+
+    String.concat " " res
+
+
+
+
+
+
+
+
+
+
+
+

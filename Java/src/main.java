@@ -1,6 +1,8 @@
 import com.google.common.base.Stopwatch;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * Created by Daniel on 28.03.2015.
@@ -64,4 +66,55 @@ public class main {
 
         return res;
     }
-}
+
+    public static String toPostfix(String str) {
+        String[] tokens = str.split(" ");
+        Stack<String> operators = new Stack<>();
+        ArrayList<String> res = new ArrayList<>();
+
+        for(String token : tokens)
+        {
+            switch (token)
+            {
+                case "(":
+                    operators.push("(");
+                    break;
+                case ")":
+                    String op = operators.pop();
+                    while (!op.equals("("))
+                    {
+                        res.add(op);
+                        op = operators.pop();
+                    }
+                    break;
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                    while (!operators.isEmpty() && getPrecedence(token) <= getPrecedence(operators.peek()))
+                        res.add(operators.pop());
+                    operators.push(token);
+                    break;
+                default:
+                    res.add(token);
+            }
+        }
+
+        while (!operators.isEmpty())
+            res.add(operators.pop());
+
+        return String.join(" ", res);
+    }
+
+    private static int getPrecedence(String s) {
+        switch (s) {
+            case "+":
+            case "-":
+                return 1;
+            case "/":
+            case "*":
+                return 2;
+        }
+        return 0;
+    }
+}   

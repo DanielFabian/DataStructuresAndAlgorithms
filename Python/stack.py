@@ -54,3 +54,30 @@ def to_base(num, base):
 
 def to_binary(num):
     return to_base(num, 2)
+
+
+def to_postfix(string):
+    tokens = string.split()
+    prec = {"+": 1, "-": 1, "*": 2, "/": 2, "(": 0, ")": 0 }
+    operators = Stack()
+
+    res = []
+    for token in tokens:
+        if token == "(":
+            operators.push("(")
+        elif token == ")":
+            op = operators.pop()
+            while op != "(":
+                res.append(op)
+                op = operators.pop()
+        elif token in "+-*/":
+            while not operators.is_empty() and prec[token] <= prec[operators.peek()]:
+                res.append(operators.pop())
+            operators.push(token)
+        else:
+            res.append(token)
+
+    while not operators.is_empty():
+        res.append(operators.pop())
+
+    return " ".join(res)

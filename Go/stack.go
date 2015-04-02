@@ -1,6 +1,7 @@
 package main
 import (
     "fmt"
+    "strings"
 )
 
 type Stack struct  {
@@ -65,4 +66,49 @@ func toBase(num int, base int) string {
 
 func toBinary(num int) string {
     return toBase(num, 2);
+}
+
+func toPostfix(str string) string {
+    tokens := strings.Split(str, " ")
+    prec := func (token string) int {
+        switch token {
+            case "+", "-":
+                return 1
+            case "*", "/":
+                return 2
+        }
+        return 0
+    }
+
+    operators := new(Stack)
+
+    var res []string
+
+    for _, token := range tokens {
+        switch token {
+            case "(":
+                operators.push("(")
+            case ")": {
+                op := operators.pop()
+                for op != "(" {
+                    res = append(res, op.(string))
+                    op = operators.pop()
+                }
+            }
+            case "+", "-", "*", "/": {
+                for !operators.isEmpty() && prec(token) <= prec(operators.peek().(string)) {
+                    res = append(res, operators.pop().(string))
+                }
+                operators.push(token)
+            }
+            default:
+                res = append(res, token)
+        }
+    }
+
+    for !operators.isEmpty() {
+        res = append(res, operators.pop().(string))
+    }
+
+    return strings.Join(res, " ")
 }

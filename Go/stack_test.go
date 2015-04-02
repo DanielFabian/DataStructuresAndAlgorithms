@@ -88,3 +88,18 @@ func Test_toBinary(t *testing.T) {
         t.Errorf("wrong binary transform: %s, expected 11101001", actual)
     }
 }
+
+func Test_toBase(t *testing.T) {
+    tests := [] struct { num, base int; exp string } {
+        { 233, 2, "11101001" },
+        { 233, 8, "351" },
+        { 233, 16, "E9" },
+    }
+
+    for _, test := range tests {
+        actual := toBase(test.num, test.base)
+        if actual != test.exp {
+            t.Errorf("wrong base transform: toBase(%d, %d) = %s, expected %s", test.num, test.base, actual, test.exp)
+        }
+    }
+}

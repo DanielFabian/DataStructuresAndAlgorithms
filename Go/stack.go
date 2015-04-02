@@ -47,17 +47,22 @@ func checkParentheses (str string) bool {
     return stack.isEmpty()
 }
 
-func toBinary(num int) string {
+func toBase(num int, base int) string {
+    digits := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     stack := new(Stack)
     for num > 0 {
-        stack.push(num % 2)
-        num /= 2
+        stack.push(digits[num % base])
+        num /= base
     }
 
     res := ""
     for !stack.isEmpty() {
-        res += fmt.Sprint(stack.pop())
+        res += fmt.Sprintf("%c", stack.pop())
     }
 
     return res
+}
+
+func toBinary(num int) string {
+    return toBase(num, 2);
 }

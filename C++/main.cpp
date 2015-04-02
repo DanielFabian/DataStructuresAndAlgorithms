@@ -19,6 +19,7 @@ int main() {
     testCheckParentheses();
 
     testToBinary();
+    testToBase();
     return 0;
 }
 
@@ -137,4 +138,12 @@ void testToBinary() {
     assert(toBinary(233) == "11101001");
 
     cout << "testToBinary passed" << endl;
+}
+
+void testToBase() {
+    assert(toBase(233, 2) == "11101001");
+    assert(toBase(233, 8) == "351");
+    assert(toBase(233, 16) == "E9");
+
+    cout << "testToBase passed" << endl;
 }

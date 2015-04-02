@@ -81,3 +81,8 @@ public:
 
     def test_to_binary(self):
         self.assertEquals("11101001", to_binary(233))
+
+    def test_to_base(self):
+        self.assertEquals("11101001", to_base(233, 2))
+        self.assertEquals("351", to_base(233, 8))
+        self.assertEquals("E9", to_base(233, 16))

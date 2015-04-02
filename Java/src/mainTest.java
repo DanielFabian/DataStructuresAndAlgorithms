@@ -78,4 +78,11 @@ public class mainTest {
         assertEquals("11101001", main.toBinary(233));
     }
 
+    @Test
+    public void testToBase() {
+        assertEquals("11101001", main.toBase(233, 2));
+        assertEquals("351", main.toBase(233, 8));
+        assertEquals("E9", main.toBase(233, 16));
+    }
+
 }

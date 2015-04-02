@@ -2,7 +2,6 @@ __author__ = 'Daniel'
 
 
 class Stack():
-
     def __init__(self):
         self.items = []
 
@@ -39,14 +38,19 @@ def check_parentheses(inp):
     return stack.is_empty()
 
 
-def to_binary(num):
+def to_base(num, base):
+    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     stack = Stack()
     while num > 0:
-        stack.push(num % 2)
-        num /= 2
+        stack.push(digits[num % base])
+        num /= base
 
     res = ""
     while not stack.is_empty():
-        res += str(stack.pop())
+        res += stack.pop()
 
     return res
+
+
+def to_binary(num):
+    return to_base(num, 2)

@@ -62,4 +62,8 @@ public:
 let [<Test>] toBinary () =
     233 |> toBinary |> should equal "11101001"
     
-
+let [<Test>] toBase () =
+    233 |> toBase 2 |> should equal "11101001"
+    233 |> toBase 8 |> should equal "351"
+    233 |> toBase 16 |> should equal "E9"
+    

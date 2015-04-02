@@ -46,15 +46,20 @@ public class main {
     }
 
     static String toBinary(int num) {
-        Stack<Integer> stack = new Stack<>();
+        return toBase(num, 2);
+    }
+
+    static String toBase(int num, int base) {
+        char[] digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        Stack<Character> stack = new Stack<>();
         while (num > 0) {
-            stack.push(num % 2);
-            num /= 2;
+            stack.push(digits[num % base]);
+            num /= base;
         }
 
         String res = "";
         while (!stack.isEmpty()) {
-            res += stack.pop().toString();
+            res += stack.pop();
         }
 
         return res;

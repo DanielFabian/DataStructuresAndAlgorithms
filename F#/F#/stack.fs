@@ -27,11 +27,12 @@ let checkParentheses str =
             true
     ) && stack.isEmpty
 
-let toBinary num =
+let toBase b num =
+    let digits = Array.append [|'0'..'9'|] [|'A'..'Z'|]
     let stack = Stack()
     let rec consume = function
         | 0 -> ()
-        | n -> stack.push (n % 2); consume (n / 2)
+        | n -> stack.push digits.[n % b]; consume (n / b)
     
     consume num
 
@@ -40,3 +41,5 @@ let toBinary num =
         else buildString (str + stack.pop().ToString())
 
     buildString ""
+
+let toBinary = toBase 2

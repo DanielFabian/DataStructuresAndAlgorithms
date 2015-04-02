@@ -19,17 +19,22 @@ bool checkParentheses(std::string str) {
 }
 
 std::string toBinary(int num) {
-    auto digits = stack<int>();
+    return toBase(num, 2);
+}
+
+std::string toBase(int num, int base) {
+    auto digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    auto digitsInBase = stack<char>();
     while (num > 0) {
-        digits.push(num % 2);
-        num /= 2;
+        digitsInBase.push(digits[num % base]);
+        num /= base;
     }
 
     auto res = std::string();
 
-    while (!digits.isEmpty())
+    while (!digitsInBase.isEmpty())
     {
-        res += boost::lexical_cast<std::string>(digits.pop());
+        res += digitsInBase.pop();
     }
 
     return res;

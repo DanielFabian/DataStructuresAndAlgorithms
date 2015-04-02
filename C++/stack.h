@@ -52,3 +52,7 @@ bool checkParentheses(std::string str);
 std::string toBinary(int num);
 
 std::string toBase(int num, int base);
+
+int getPrecedence(std::string str);
+
+std::string toPostfix(std::string str);

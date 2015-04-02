@@ -2,7 +2,10 @@
 // Created by Daniel on 31.03.2015.
 //
 #include "stack.h"
-#include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string.hpp>
+#include <sstream>
+using namespace boost::algorithm;
+
 bool checkParentheses(std::string str) {
     auto parentheses = stack<char>();
     for (auto c : str) {
@@ -38,4 +41,44 @@ std::string toBase(int num, int base) {
     }
 
     return res;
+}
+
+std::string toPostfix(std::string str) {
+    std::vector<std::string> tokens;
+    split(tokens, str, boost::is_space(), token_compress_on);
+    auto prec = [] (auto str) {
+        if(str == "+" || str == "-")
+            return 1;
+        if(str == "*" || str == "/")
+            return 2;
+        return 0;
+    };
+
+    auto operators = stack<std::string>();
+
+    std::stringstream res;
+
+    for (auto token : tokens) {
+        if(token == "(")
+            operators.push(token);
+        else if (token == ")") {
+            auto op = operators.pop();
+            while (op != "(") {
+                res << op << " ";
+                op = operators.pop();
+            };
+        }
+        else if (token == "+" || token == "-" || token == "*" || token == "/") {
+            while (!operators.isEmpty() && prec(token) <= prec(operators.peek()))
+                res << operators.pop() << " ";
+            operators.push(token);
+        }
+        else
+            res << token << " ";
+    }
+
+    while (!operators.isEmpty())
+        res << operators.pop() << " ";
+
+    return res.str().erase(res.str().length() - 1);
 }

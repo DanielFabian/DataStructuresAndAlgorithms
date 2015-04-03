@@ -60,5 +60,44 @@ public:
     ASSERT_FALSE(checkParentheses("(()()(()"));
 }
 
+TEST(Stack, push) {
+    auto testee = stack<int>();
+    testee.push(1);
+    ASSERT_EQ(1, testee.peek());
+    testee.push(2);
+    ASSERT_EQ(2, testee.peek());
+    testee.push(3);
+    ASSERT_EQ(3, testee.peek());
+    ASSERT_EQ(3, testee.size());
+}
 
+TEST(Stack, pop) {
+    auto testee = stack<int>();
+    testee.push(1);
+    testee.push(2);
+    testee.push(3);
+    ASSERT_EQ(3, testee.size());
+    ASSERT_EQ(3, testee.pop());
+    ASSERT_EQ(2, testee.size());
+}
 
+TEST(Stack, size) {
+    auto testee = stack<char>();
+
+    ASSERT_EQ(0, testee.size());
+
+    testee.push(1);
+    testee.push(2);
+
+    ASSERT_EQ(2, testee.size());
+}
+
+TEST(Stack, isEmpty)
+{
+    auto testee = stack<char>();
+    ASSERT_TRUE(testee.isEmpty());
+
+    testee.push(1);
+
+    ASSERT_FALSE(testee.isEmpty());
+}

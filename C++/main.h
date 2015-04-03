@@ -2,10 +2,9 @@
 // Created by Daniel on 31.03.2015.
 //
 
-#pragma once
+#ifndef C_MAIN_H
+#define C_MAIN_H
 
-void testPush();
-void testPop();
-void testSize();
-void testIsEmpty();
+int main();
 
+#endif //C_MAIN_H

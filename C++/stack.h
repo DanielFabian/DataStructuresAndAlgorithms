@@ -2,7 +2,8 @@
 // Created by Daniel on 31.03.2015.
 //
 
-#pragma once
+#ifndef C_STACK_H
+#define C_STACK_H
 #include <vector>
 #include <cstdlib>
 #include <string>
@@ -56,3 +57,5 @@ std::string toBase(int num, int base);
 std::string toPostfix(std::string str);
 
 int evalPostfix(std::string str);
+
+#endif //C_STACK_H

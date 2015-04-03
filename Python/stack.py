@@ -85,25 +85,25 @@ def to_postfix(string):
 
 def eval_postfix(string):
     tokens = string.split()
-    evalStack = Stack()
+
+    def eval_op(f):
+        right = eval_stack.pop()
+        left = eval_stack.pop()
+        eval_stack.push(f(left, right))
+
+    eval_stack = Stack()
+    from operator import add, floordiv, mul, sub
+
     for token in tokens:
         if token == "+":
-            right = evalStack.pop()
-            left = evalStack.pop()
-            evalStack.push(left + right)
+            eval_op(add)
         elif token == "-":
-            right = evalStack.pop()
-            left = evalStack.pop()
-            evalStack.push(left - right)
+            eval_op(sub)
         elif token == "*":
-            right = evalStack.pop()
-            left = evalStack.pop()
-            evalStack.push(left * right)
+            eval_op(mul)
         elif token == "/":
-            right = evalStack.pop()
-            left = evalStack.pop()
-            evalStack.push(left / right)
+            eval_op(floordiv)
         else:
-            evalStack.push(int(token))
+            eval_stack.push(int(token))
 
-    return evalStack.pop()
+    return eval_stack.pop()

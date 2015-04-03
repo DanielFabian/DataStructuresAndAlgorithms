@@ -1,6 +1,6 @@
-[submodule "lib/gtest"]
-	path = lib/gtest
-	owner = lib
+[submodule "C++/lib/gtest"]
+	path = C++/lib/gtest
+	owner = C++/lib
 	url = http://googletest.googlecode.com/svn
 	revision = 663
 	branch = trunk

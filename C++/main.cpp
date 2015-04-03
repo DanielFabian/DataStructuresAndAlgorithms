@@ -2,12 +2,9 @@
 #include "stack.h"
 
 #include <iostream>
-#include <cstdio>
-#include <tuple>
 #include <assert.h>
 
 using namespace std;
-using namespace std::chrono;
 
 int main() {
 
@@ -16,47 +13,8 @@ int main() {
     testIsEmpty();
     testSize();
 
-    testCheckParentheses();
 
-    testToBinary();
-    testToBase();
-    testToPostfix();
-    testEvalPostfix();
     return 0;
-}
-
-long long sum_of_n(int n)
-{
-    auto res = 0LL;
-    for (auto i = 1LL; i <= n; i++) {
-        res += i;
-    }
-
-    return res;
-}
-
-void printBenchmark(const char *name, nanoseconds elapsed, int n) {
-    // doesn't work. Can't force C++ to NOT delete the function call...
-    auto averageTime = (double) elapsed.count() / (double) n;
-    if (averageTime < 1000.0)
-    {
-        printf("%s, iterations %d, %0.3f ns/op\n", name, n, averageTime);
-    }
-    else
-    {
-        printf("%s, iterations %d, %d ns/op\n", name, n, (int) averageTime);
-    }
-}
-
-void benchmark_sum_of_n() {
-    // doesn't work. can't force C++ to NOT delete the function call.
-    auto n = 100000;
-    auto start = high_resolution_clock::now();
-    for (auto i = 1; i < n; i++) {
-        sum_of_n(10000);
-    }
-    auto stop = high_resolution_clock::now();
-    printBenchmark("sum_of_n", duration_cast<nanoseconds>(stop - start), n);
 }
 
 void testIsEmpty() {
@@ -104,64 +62,3 @@ void testPop() {
     cout << "testPop passed" << endl;
 }
 
-void testCheckParentheses() {
-    auto tests = vector<tuple<bool, string>>();
-    tests.push_back(make_tuple(true, "() [] () ([]()[])"));
-    tests.push_back(make_tuple(true, "(()()()())"));
-    tests.push_back(make_tuple(true, "(()((())()))"));
-    tests.push_back(make_tuple(true, R"(#pragma once
-#include <vector>
-#include <cstdlib>
-
-    template <class T>
-    class stack {
-    private:
-        std::vector<T> data;
-    public:
-        void push(const T& item);
-        T pop();
-        T peek();
-        bool isEmpty();
-        size_t size();
-    };)"));
-    tests.push_back(make_tuple(false, "( (] ([)]"));
-    tests.push_back(make_tuple(false, "((((((())"));
-    tests.push_back(make_tuple(false, "()))"));
-    tests.push_back(make_tuple(false, "(()()(()"));
-
-    for (auto test : tests){
-        assert(checkParentheses(get<1>(test)) == get<0>(test));
-    }
-
-    cout << "testCheckParentheses passed" << endl;
-}
-
-void testToBinary() {
-    assert(toBinary(233) == "11101001");
-
-    cout << "testToBinary passed" << endl;
-}
-
-void testToBase() {
-    assert(toBase(233, 2) == "11101001");
-    assert(toBase(233, 8) == "351");
-    assert(toBase(233, 16) == "E9");
-
-    cout << "testToBase passed" << endl;
-}
-
-void testToPostfix() {
-    assert(toPostfix("( A + B ) * ( C + D )") == "A B + C D + *");
-    assert(toPostfix("( A + B ) * C") == "A B + C *");
-    assert(toPostfix("A + B * C") == "A B C * +");
-
-    cout << "testToPostfix passed" << endl;
-}
-
-void testEvalPostfix() {
-    assert(evalPostfix("7 8 + 3 2 + /") == 3);
-    assert(evalPostfix("17 10 + 3 * 9 /") == 9);
-    assert(evalPostfix("5 1 2 + 4 * + 3 -") == 14);
-    assert(evalPostfix("3 4 + 5 *") == 35);
-    assert(evalPostfix("1 2 + 3 4 + *") == 21);
-}

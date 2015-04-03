@@ -43,7 +43,7 @@ def to_base(num, base):
     stack = Stack()
     while num > 0:
         stack.push(digits[num % base])
-        num /= base
+        num //= base
 
     res = ""
     while not stack.is_empty():
@@ -58,7 +58,7 @@ def to_binary(num):
 
 def to_postfix(string):
     tokens = string.split()
-    prec = {"+": 1, "-": 1, "*": 2, "/": 2, "(": 0, ")": 0 }
+    prec = {"+": 1, "-": 1, "*": 2, "/": 2, "(": 0, ")": 0}
     operators = Stack()
 
     res = []
@@ -81,3 +81,29 @@ def to_postfix(string):
         res.append(operators.pop())
 
     return " ".join(res)
+
+
+def eval_postfix(string):
+    tokens = string.split()
+    evalStack = Stack()
+    for token in tokens:
+        if token == "+":
+            right = evalStack.pop()
+            left = evalStack.pop()
+            evalStack.push(left + right)
+        elif token == "-":
+            right = evalStack.pop()
+            left = evalStack.pop()
+            evalStack.push(left - right)
+        elif token == "*":
+            right = evalStack.pop()
+            left = evalStack.pop()
+            evalStack.push(left * right)
+        elif token == "/":
+            right = evalStack.pop()
+            left = evalStack.pop()
+            evalStack.push(left / right)
+        else:
+            evalStack.push(int(token))
+
+    return evalStack.pop()

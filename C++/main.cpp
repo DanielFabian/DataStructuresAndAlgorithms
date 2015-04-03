@@ -21,6 +21,7 @@ int main() {
     testToBinary();
     testToBase();
     testToPostfix();
+    testEvalPostfix();
     return 0;
 }
 
@@ -155,4 +156,12 @@ void testToPostfix() {
     assert(toPostfix("A + B * C") == "A B C * +");
 
     cout << "testToPostfix passed" << endl;
+}
+
+void testEvalPostfix() {
+    assert(evalPostfix("7 8 + 3 2 + /") == 3);
+    assert(evalPostfix("17 10 + 3 * 9 /") == 9);
+    assert(evalPostfix("5 1 2 + 4 * + 3 -") == 14);
+    assert(evalPostfix("3 4 + 5 *") == 35);
+    assert(evalPostfix("1 2 + 3 4 + *") == 21);
 }

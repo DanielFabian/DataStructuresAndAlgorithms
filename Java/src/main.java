@@ -117,4 +117,37 @@ public class main {
         }
         return 0;
     }
+
+    public static Integer evalPostfix(String s) {
+        String[] tokens = s.split(" ");
+        Stack<Integer> evalStack = new Stack<>();
+
+        for (String token : tokens) {
+            if(token.equals("+")) {
+                Integer right = evalStack.pop();
+                Integer left = evalStack.pop();
+                evalStack.push(left + right);
+            }
+            else if(token.equals("-")) {
+                Integer right = evalStack.pop();
+                Integer left = evalStack.pop();
+                evalStack.push(left - right);
+            }
+            else if(token.equals("*")) {
+                Integer right = evalStack.pop();
+                Integer left = evalStack.pop();
+                evalStack.push(left * right);
+            }
+            else if(token.equals("/")) {
+                Integer right = evalStack.pop();
+                Integer left = evalStack.pop();
+                evalStack.push(left / right);
+            }
+            else {
+                evalStack.push(Integer.parseInt(token));
+            }
+        }
+
+        return evalStack.pop();
+    }
 }

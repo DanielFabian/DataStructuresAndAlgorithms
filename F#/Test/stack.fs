@@ -72,5 +72,9 @@ let [<Test>] toPostfix () =
     "( A + B ) * C" |> toPostfix |> should equal "A B + C *"
     "A + B * C" |> toPostfix |> should equal "A B C * +"
 
-
-
+let [<Test>] evalPostfix () =
+    "7 8 + 3 2 + /" |> evalPostfix |> should equal 3
+    "17 10 + 3 * 9 /" |> evalPostfix |> should equal 9
+    "5 1 2 + 4 * + 3 -" |> evalPostfix |> should equal 14
+    "3 4 + 5 *" |> evalPostfix |> should equal 35
+    "1 2 + 3 4 + *" |> evalPostfix |> should equal 21

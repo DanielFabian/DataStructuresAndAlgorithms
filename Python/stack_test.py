@@ -91,3 +91,11 @@ public:
         self.assertEquals("A B + C D + *", to_postfix("( A + B ) * ( C + D )"))
         self.assertEquals("A B + C *", to_postfix("( A + B ) * C"))
         self.assertEquals("A B C * +", to_postfix("A + B * C"))
+
+    def test_eval_postfix(self):
+        self.assertEquals(3, eval_postfix("7 8 + 3 2 + /"))
+        self.assertEquals(9, eval_postfix("17 10 + 3 * 9 /"))
+        self.assertEquals(14, eval_postfix("5 1 2 + 4 * + 3 -"))
+        self.assertEquals(35, eval_postfix("3 4 + 5 *"))
+        self.assertEquals(21, eval_postfix("1 2 + 3 4 + *"))
+

@@ -2,6 +2,7 @@ package main
 import (
     "fmt"
     "strings"
+    "strconv"
 )
 
 type Stack struct  {
@@ -88,19 +89,17 @@ func toPostfix(str string) string {
         switch token {
             case "(":
                 operators.push("(")
-            case ")": {
+            case ")":
                 op := operators.pop()
                 for op != "(" {
                     res = append(res, op.(string))
                     op = operators.pop()
                 }
-            }
-            case "+", "-", "*", "/": {
+            case "+", "-", "*", "/":
                 for !operators.isEmpty() && prec(token) <= prec(operators.peek().(string)) {
                     res = append(res, operators.pop().(string))
                 }
                 operators.push(token)
-            }
             default:
                 res = append(res, token)
         }
@@ -111,4 +110,33 @@ func toPostfix(str string) string {
     }
 
     return strings.Join(res, " ")
+}
+
+func evalPostfix(str string) int {
+    tokens := strings.Split(str, " ")
+    evalStack := new(Stack)
+    for _, token := range tokens {
+        switch token {
+            case "+":
+                right := evalStack.pop()
+                left := evalStack.pop()
+                evalStack.push(left.(int) + right.(int))
+            case "-":
+                right := evalStack.pop()
+                left := evalStack.pop()
+                evalStack.push(left.(int) - right.(int))
+            case "*":
+                right := evalStack.pop()
+                left := evalStack.pop()
+                evalStack.push(left.(int) * right.(int))
+            case "/":
+                right := evalStack.pop()
+                left := evalStack.pop()
+                evalStack.push(left.(int) / right.(int))
+            default:
+                num, _ := strconv.ParseInt(token, 0, 32)
+                evalStack.push(int(num))
+        }
+    }
+    return evalStack.pop().(int)
 }

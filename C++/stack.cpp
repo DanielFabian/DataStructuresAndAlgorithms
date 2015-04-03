@@ -3,6 +3,7 @@
 //
 #include "stack.h"
 #include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 #include <sstream>
 using namespace boost::algorithm;
 
@@ -81,4 +82,38 @@ std::string toPostfix(std::string str) {
         res << operators.pop() << " ";
 
     return res.str().erase(res.str().length() - 1);
+}
+
+int evalPostfix(std::string str) {
+    std::vector<std::string> tokens;
+    split(tokens, str, boost::is_space(), token_compress_on);
+    auto evalStack = stack<int>();
+    for(auto token : tokens)
+    {
+        if(token == "+") {
+            auto right = evalStack.pop();
+            auto left = evalStack.pop();
+            evalStack.push(left + right);
+        }
+        else if(token == "-") {
+            auto right = evalStack.pop();
+            auto left = evalStack.pop();
+            evalStack.push(left - right);
+        }
+        else if(token == "*") {
+            auto right = evalStack.pop();
+            auto left = evalStack.pop();
+            evalStack.push(left * right);
+        }
+        else if(token == "/") {
+            auto right = evalStack.pop();
+            auto left = evalStack.pop();
+            evalStack.push(left / right);
+        }
+        else {
+            evalStack.push(boost::lexical_cast<int>(token));
+        }
+    }
+
+    return evalStack.pop();
 }

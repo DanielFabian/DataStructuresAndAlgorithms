@@ -92,4 +92,12 @@ public class mainTest {
         assertEquals("A B C * +", main.toPostfix("A + B * C"));
     }
 
+    @Test
+    public void testEvalPostfix() {
+        assertEquals(new Integer(3), main.evalPostfix("7 8 + 3 2 + /"));
+        assertEquals(new Integer(9), main.evalPostfix("17 10 + 3 * 9 /"));
+        assertEquals(new Integer(14), main.evalPostfix("5 1 2 + 4 * + 3 -"));
+        assertEquals(new Integer(35), main.evalPostfix("3 4 + 5 *"));
+        assertEquals(new Integer(21), main.evalPostfix("1 2 + 3 4 + *"));
+    }
 }

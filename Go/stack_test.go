@@ -50,7 +50,7 @@ func Test_isEmpty(t *testing.T) {
 }
 
 func Test_checkParentheses(t *testing.T) {
-    tests := []struct { expected bool; in string } {
+    tests := []struct { expected bool; in string }{
         {true, "() [] () ([]()[])"},
         {true, "(()()()())"},
         {true, "(()((())()))"},
@@ -90,10 +90,10 @@ func Test_toBinary(t *testing.T) {
 }
 
 func Test_toBase(t *testing.T) {
-    tests := [] struct { num, base int; exp string } {
-        { 233, 2, "11101001" },
-        { 233, 8, "351" },
-        { 233, 16, "E9" },
+    tests := [] struct { num, base int; exp string }{
+        {233, 2, "11101001" },
+        {233, 8, "351" },
+        {233, 16, "E9" },
     }
 
     for _, test := range tests {
@@ -105,7 +105,7 @@ func Test_toBase(t *testing.T) {
 }
 
 func Test_toPostfix(t *testing.T) {
-    tests := [] struct { inp, exp string } {
+    tests := [] struct { inp, exp string }{
         { "( A + B ) * ( C + D )", "A B + C D + *" },
         { "( A + B ) * C", "A B + C *" },
         { "A + B * C", "A B C * +" },
@@ -115,6 +115,23 @@ func Test_toPostfix(t *testing.T) {
         actual := toPostfix(test.inp)
         if actual != test.exp {
             t.Errorf("wrong to postfix transform: toPostfix(\"%s\") = \"%s\", expected \"%s\"", test.inp, actual, test.exp)
+        }
+    }
+}
+
+func Test_evalPostfix(t *testing.T) {
+    tests := [] struct { inp string; exp int }{
+        { "7 8 + 3 2 + /", 3 },
+        { "17 10 + 3 * 9 /", 9 },
+        { "5 1 2 + 4 * + 3 -", 14 },
+        { "3 4 + 5 *", 35 },
+        { "1 2 + 3 4 + *", 21 },
+    }
+
+    for _, test := range tests {
+        actual := evalPostfix(test.inp)
+        if actual != test.exp {
+            t.Errorf("wrong postfix evaluation: evalPostfix(\"%s\") = %d, expected %d", test.inp, actual, test.exp)
         }
     }
 }

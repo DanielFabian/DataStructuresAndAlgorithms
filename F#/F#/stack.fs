@@ -78,7 +78,25 @@ let toPostfix str =
     String.concat " " res
 
 
+let evalPostfix str = 
+    let tokens = (str:string).Split ' ' 
+    let evalStack = Stack()
 
+    let eval (++) =
+        let right = evalStack.pop()
+        let left = evalStack.pop()
+        evalStack.push(left ++ right)
+
+    tokens
+    |> Array.iter(
+        function
+        | "+" -> eval (+)
+        | "-" -> eval (-)
+        | "*" -> eval (*)
+        | "/" -> eval (/)
+        | token -> evalStack.push(System.Int32.Parse token))
+    
+    evalStack.pop()
 
 
 

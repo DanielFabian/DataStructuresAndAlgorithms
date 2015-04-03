@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Daniel on 30.03.2015.
@@ -17,8 +17,7 @@ public class mainTest {
     }
 
     @Test
-    public void benchmark_sum_of_n()
-    {
+    public void benchmark_sum_of_n() {
         int n = 100;
         Stopwatch sw = Stopwatch.createStarted();
         for (int i = 0; i < n; i++) {
@@ -29,13 +28,11 @@ public class mainTest {
         printBenchmark("sum_of_n", sw.elapsed(TimeUnit.NANOSECONDS), n);
     }
 
-    private static void printBenchmark(String name, long nanoseconds, int n)
-    {
+    private static void printBenchmark(String name, long nanoseconds, int n) {
         double averageTime = nanoseconds / (double) n;
-        if (averageTime < 1000){
+        if (averageTime < 1000) {
             System.out.printf("%s, iterations %d, %0.3f ns/op", name, n, averageTime);
-        }
-        else {
+        } else {
             System.out.printf("%s, iterations %d, %d ns/op", name, n, (int) averageTime);
         }
     }
@@ -44,29 +41,37 @@ public class mainTest {
     public void testCheckParentheses() throws Exception {
         ArrayList<Boolean> expected = new ArrayList<>();
         ArrayList<String> input = new ArrayList<>();
-        expected.add(true); input.add("() [] () ([]()[])");
-        expected.add(true); input.add("(()()()())");
-        expected.add(true); input.add("(()((())()))");
-        expected.add(true); input.add(
+        expected.add(true);
+        input.add("() [] () ([]()[])");
+        expected.add(true);
+        input.add("(()()()())");
+        expected.add(true);
+        input.add("(()((())()))");
+        expected.add(true);
+        input.add(
                 "#pragma once\n" +
-                "#include <vector>\n" +
-                "#include <cstdlib>\n" +
-                "\n" +
-                "template <class T>\n" +
-                "class stack {\n" +
-                "    private:\n" +
-                "        std::vector<T> data;\n" +
-                "    public:\n" +
-                "        void push(const T& item);\n" +
-                "        T pop();\n" +
-                "        T peek();\n" +
-                "        bool isEmpty();\n" +
-                "        size_t size();\n" +
-                "};\n");
-        expected.add(false); input.add("( (] ([)]");
-        expected.add(false); input.add("((((((())");
-        expected.add(false); input.add("()))");
-        expected.add(false); input.add("(()()(()");
+                        "#include <vector>\n" +
+                        "#include <cstdlib>\n" +
+                        "\n" +
+                        "template <class T>\n" +
+                        "class stack {\n" +
+                        "    private:\n" +
+                        "        std::vector<T> data;\n" +
+                        "    public:\n" +
+                        "        void push(const T& item);\n" +
+                        "        T pop();\n" +
+                        "        T peek();\n" +
+                        "        bool isEmpty();\n" +
+                        "        size_t size();\n" +
+                        "};\n");
+        expected.add(false);
+        input.add("( (] ([)]");
+        expected.add(false);
+        input.add("((((((())");
+        expected.add(false);
+        input.add("()))");
+        expected.add(false);
+        input.add("(()()(()");
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), main.checkParentheses(input.get(i)));

@@ -10,28 +10,23 @@ public class Stack<T> {
         this.items = new ArrayList<>();
     }
 
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return items.isEmpty();
     }
 
-    public int size()
-    {
+    public int size() {
         return items.size();
     }
 
-    public void push(T item)
-    {
+    public void push(T item) {
         items.add(item);
     }
 
-    public T peek()
-    {
+    public T peek() {
         return items.get(items.size() - 1);
     }
 
-    public T pop()
-    {
+    public T pop() {
         int idx = items.size() - 1;
         T res = items.get(idx);
         items.remove(idx);

@@ -5,7 +5,7 @@ import (
     "strconv"
 )
 
-type Stack struct  {
+type Stack struct {
     data []interface{}
 }
 
@@ -32,7 +32,7 @@ func (s *Stack) isEmpty() bool {
     return len(s.data) == 0
 }
 
-func checkParentheses (str string) bool {
+func checkParentheses(str string) bool {
     stack := new(Stack);
     for _, c := range str {
         if c == ')' || c == ']' || c == '}' || c == '>' {
@@ -71,12 +71,12 @@ func toBinary(num int) string {
 
 func toPostfix(str string) string {
     tokens := strings.Split(str, " ")
-    prec := func (token string) int {
+    prec := func(token string) int {
         switch token {
             case "+", "-":
-                return 1
+            return 1
             case "*", "/":
-                return 2
+            return 2
         }
         return 0
     }
@@ -88,20 +88,20 @@ func toPostfix(str string) string {
     for _, token := range tokens {
         switch token {
             case "(":
-                operators.push("(")
+            operators.push("(")
             case ")":
-                op := operators.pop()
-                for op != "(" {
-                    res = append(res, op.(string))
-                    op = operators.pop()
-                }
+            op := operators.pop()
+            for op != "(" {
+                res = append(res, op.(string))
+                op = operators.pop()
+            }
             case "+", "-", "*", "/":
-                for !operators.isEmpty() && prec(token) <= prec(operators.peek().(string)) {
-                    res = append(res, operators.pop().(string))
-                }
-                operators.push(token)
+            for !operators.isEmpty() && prec(token) <= prec(operators.peek().(string)) {
+                res = append(res, operators.pop().(string))
+            }
+            operators.push(token)
             default:
-                res = append(res, token)
+            res = append(res, token)
         }
     }
 
@@ -112,30 +112,30 @@ func toPostfix(str string) string {
     return strings.Join(res, " ")
 }
 
+type binOp func(int, int) int
+
 func evalPostfix(str string) int {
     tokens := strings.Split(str, " ")
     evalStack := new(Stack)
+    eval := func(f binOp) {
+        right := evalStack.pop()
+        left := evalStack.pop()
+        evalStack.push(f(left.(int), right.(int)))
+    }
+
     for _, token := range tokens {
         switch token {
             case "+":
-                right := evalStack.pop()
-                left := evalStack.pop()
-                evalStack.push(left.(int) + right.(int))
+            eval(func(x int, y int) int {return x + y})
             case "-":
-                right := evalStack.pop()
-                left := evalStack.pop()
-                evalStack.push(left.(int) - right.(int))
+            eval(func(x int, y int) int {return x - y})
             case "*":
-                right := evalStack.pop()
-                left := evalStack.pop()
-                evalStack.push(left.(int) * right.(int))
+            eval(func(x int, y int) int {return x * y})
             case "/":
-                right := evalStack.pop()
-                left := evalStack.pop()
-                evalStack.push(left.(int) / right.(int))
+            eval(func(x int, y int) int {return x / y})
             default:
-                num, _ := strconv.ParseInt(token, 0, 32)
-                evalStack.push(int(num))
+            num, _ := strconv.ParseInt(token, 0, 32)
+            evalStack.push(int(num))
         }
     }
     return evalStack.pop().(int)

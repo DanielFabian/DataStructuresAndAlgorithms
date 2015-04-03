@@ -2,14 +2,14 @@ import com.google.common.base.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
 
 /**
  * Created by Daniel on 28.03.2015.
  */
 public class main {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         System.out.println("Hello World");
 
         System.out.println(sum_of_n(10));
@@ -22,8 +22,7 @@ public class main {
         }
     }
 
-    public static long sum_of_n(int n)
-    {
+    public static long sum_of_n(int n) {
         long res = 0;
         for (int i = 1; i <= n; i++) {
             res += i;
@@ -72,17 +71,14 @@ public class main {
         Stack<String> operators = new Stack<>();
         ArrayList<String> res = new ArrayList<>();
 
-        for(String token : tokens)
-        {
-            switch (token)
-            {
+        for (String token : tokens) {
+            switch (token) {
                 case "(":
                     operators.push("(");
                     break;
                 case ")":
                     String op = operators.pop();
-                    while (!op.equals("("))
-                    {
+                    while (!op.equals("(")) {
                         res.add(op);
                         op = operators.pop();
                     }
@@ -122,30 +118,18 @@ public class main {
         String[] tokens = s.split(" ");
         Stack<Integer> evalStack = new Stack<>();
 
+        Consumer<BinaryOperator<Integer>> eval = (binOp) -> {
+            Integer right = evalStack.pop();
+            Integer left = evalStack.pop();
+            evalStack.push(binOp.apply(left, right));
+        };
+
         for (String token : tokens) {
-            if(token.equals("+")) {
-                Integer right = evalStack.pop();
-                Integer left = evalStack.pop();
-                evalStack.push(left + right);
-            }
-            else if(token.equals("-")) {
-                Integer right = evalStack.pop();
-                Integer left = evalStack.pop();
-                evalStack.push(left - right);
-            }
-            else if(token.equals("*")) {
-                Integer right = evalStack.pop();
-                Integer left = evalStack.pop();
-                evalStack.push(left * right);
-            }
-            else if(token.equals("/")) {
-                Integer right = evalStack.pop();
-                Integer left = evalStack.pop();
-                evalStack.push(left / right);
-            }
-            else {
-                evalStack.push(Integer.parseInt(token));
-            }
+            if (token.equals("+")) eval.accept((x, y) -> x + y);
+            else if (token.equals("-")) eval.accept((x, y) -> x - y);
+            else if (token.equals("*")) eval.accept((x, y) -> x * y);
+            else if (token.equals("/")) eval.accept((x, y) -> x / y);
+            else evalStack.push(Integer.parseInt(token));
         }
 
         return evalStack.pop();

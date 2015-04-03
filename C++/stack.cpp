@@ -88,31 +88,19 @@ int evalPostfix(std::string str) {
     std::vector<std::string> tokens;
     split(tokens, str, boost::is_space(), token_compress_on);
     auto evalStack = stack<int>();
+    auto eval = [&](auto binOp) {
+        auto right = evalStack.pop();
+        auto left = evalStack.pop();
+        evalStack.push(binOp(left, right));
+    };
+
     for(auto token : tokens)
     {
-        if(token == "+") {
-            auto right = evalStack.pop();
-            auto left = evalStack.pop();
-            evalStack.push(left + right);
-        }
-        else if(token == "-") {
-            auto right = evalStack.pop();
-            auto left = evalStack.pop();
-            evalStack.push(left - right);
-        }
-        else if(token == "*") {
-            auto right = evalStack.pop();
-            auto left = evalStack.pop();
-            evalStack.push(left * right);
-        }
-        else if(token == "/") {
-            auto right = evalStack.pop();
-            auto left = evalStack.pop();
-            evalStack.push(left / right);
-        }
-        else {
-            evalStack.push(boost::lexical_cast<int>(token));
-        }
+        if(token == "+") eval([](auto x, auto y) { return x + y; });
+        else if(token == "-") eval([](auto x, auto y) { return x - y; });
+        else if(token == "*") eval([](auto x, auto y) { return x * y; });
+        else if(token == "/") eval([](auto x, auto y) { return x / y; });
+        else evalStack.push(boost::lexical_cast<int>(token));
     }
 
     return evalStack.pop();

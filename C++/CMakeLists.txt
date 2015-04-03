@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(c++)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y -march=x86-64 -Wall -Wextra -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y -march=x86-64 -Wall -Wextra -Werror -O3")
 
 set(BOOST_ROOT "/usr/include/boost")
 

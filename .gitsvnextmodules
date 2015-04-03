@@ -2,7 +2,7 @@
 	path = C++/lib/gtest
 	owner = C++/lib
 	url = http://googletest.googlecode.com/svn
-	revision = 663
+	revision = 707
 	branch = trunk
 	fetch = trunk:refs/remotes/svn/trunk
 	branches = branches/*:refs/remotes/svn/branches/*

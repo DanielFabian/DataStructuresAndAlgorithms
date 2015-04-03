@@ -68,7 +68,7 @@ TEST(Stack, push) {
     ASSERT_EQ(2, testee.peek());
     testee.push(3);
     ASSERT_EQ(3, testee.peek());
-    ASSERT_EQ(3, testee.size());
+    ASSERT_EQ(3u, testee.size());
 }
 
 TEST(Stack, pop) {
@@ -76,20 +76,20 @@ TEST(Stack, pop) {
     testee.push(1);
     testee.push(2);
     testee.push(3);
-    ASSERT_EQ(3, testee.size());
+    ASSERT_EQ(3u, testee.size());
     ASSERT_EQ(3, testee.pop());
-    ASSERT_EQ(2, testee.size());
+    ASSERT_EQ(2u, testee.size());
 }
 
 TEST(Stack, size) {
     auto testee = stack<char>();
 
-    ASSERT_EQ(0, testee.size());
+    ASSERT_EQ(0u, testee.size());
 
     testee.push(1);
     testee.push(2);
 
-    ASSERT_EQ(2, testee.size());
+    ASSERT_EQ(2u, testee.size());
 }
 
 TEST(Stack, isEmpty)

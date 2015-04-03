@@ -1,0 +1,11 @@
+[submodule "lib/gtest"]
+	path = lib/gtest
+	owner = lib
+	url = http://googletest.googlecode.com/svn
+	revision = 663
+	branch = trunk
+	fetch = trunk:refs/remotes/svn/trunk
+	branches = branches/*:refs/remotes/svn/branches/*
+	tags = tags/*:refs/remote-tags/svn/tags/*
+	remote = svn
+	type = dir

@@ -2,6 +2,8 @@ package Queue;
 
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -17,6 +19,9 @@ public class QueueAlgorithmsTest {
 
     @Test
     public void testPrintQueue() throws Exception {
-
+        Random rng = new Random();
+        for (int i = 0; i < 10; i++) {
+            QueueAlgorithms.PrinterQueue(rng, 3600, 5);
+        }
     }
 }

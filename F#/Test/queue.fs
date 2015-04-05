@@ -31,3 +31,7 @@ let [<Test>] ``isEmpty should be correct`` () =
 
 let [<Test>] hotPotato () =
     hotPotato ["Bill";"David";"Susan";"Jane";"Kent";"Brad"] 7 |> should equal "Susan"
+
+let [<Test>] printQueue () =
+    for i = 1 to 10 do
+        printQueue(3600, 5)

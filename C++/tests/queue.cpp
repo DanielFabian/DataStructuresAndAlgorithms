@@ -48,6 +48,12 @@ TEST(Queue, isEmpty) {
     ASSERT_FALSE(testee.isEmpty());
 }
 
+TEST(QueueRelatedAlgorithms, PrinterQueue) {
+    for (int i = 0; i < 10; ++i) {
+        PrinterQueue(3600, 5);
+    }
+}
+
 TEST(QueueRelatedAlgorithms, hotPotato) {
     auto names = std::vector<std::string>({"Bill", "David", "Susan", "Jane", "Kent", "Brad"});
     ASSERT_EQ("Susan", hotPotato(names, 7));

@@ -8,6 +8,7 @@
 
 #include <cstdlib>
 #include <vector>
+#include <random>
 #include <string>
 
 template <class T>
@@ -44,20 +45,34 @@ size_t queue<T>::size() {
     return data.size();
 }
 
-std::string hotPotato(const std::vector<std::string> names, int num) {
-    auto q = queue<std::string>();
-    for (auto name : names) {
-        q.enqueue(name);
-    }
+std::string hotPotato(const std::vector<std::string> names, int num);
 
-    while (q.size() > 1) {
-        for (int i = 0; i < num; ++i) {
-            q.enqueue(q.dequeue());
-        }
+class Task {
+private:
+    int timeStamp;
+    int pages;
+public:
+    Task(int timeStamp);
 
-        q.dequeue();
-    }
-    return q.dequeue();
-}
+    int getTimeStamp();
 
+    int getPages();
+
+    int getWaitTime(int currentTime);
+};
+
+class Printer {
+private:
+    int ppm;
+    Task * currentTask;
+    int timeRemaining;
+
+public:
+    Printer(int ppm);
+    void tick();
+    bool isBusy();
+    void startNext(Task &task);
+};
+
+void PrinterQueue(int numSeconds, int pagesPerMinute);
 #endif //C_QUEUE_H

@@ -48,4 +48,5 @@ public class QueueTest {
         assertEquals(new Integer(1), testee.dequeue());
         assertEquals(2, testee.size());
     }
+
 }

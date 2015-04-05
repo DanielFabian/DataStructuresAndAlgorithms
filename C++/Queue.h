@@ -8,6 +8,7 @@
 
 #include <cstdlib>
 #include <vector>
+#include <string>
 
 template <class T>
 /** bad queue implementation: O(n) dequeue. */
@@ -41,6 +42,22 @@ bool queue<T>::isEmpty() {
 template <class T>
 size_t queue<T>::size() {
     return data.size();
+}
+
+std::string hotPotato(const std::vector<std::string> names, int num) {
+    auto q = queue<std::string>();
+    for (auto name : names) {
+        q.enqueue(name);
+    }
+
+    while (q.size() > 1) {
+        for (int i = 0; i < num; ++i) {
+            q.enqueue(q.dequeue());
+        }
+
+        q.dequeue();
+    }
+    return q.dequeue();
 }
 
 #endif //C_QUEUE_H

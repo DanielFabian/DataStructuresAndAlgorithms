@@ -17,3 +17,15 @@ class Queue():
 
     def dequeue(self):
         return self.items.pop()
+
+
+def hot_potato(names, num):
+    queue = Queue()
+    for name in names:
+        queue.enqueue(name)
+
+    while queue.size() > 1:
+        for _ in range(num):
+            queue.enqueue(queue.dequeue())
+        queue.dequeue()
+    return queue.dequeue()

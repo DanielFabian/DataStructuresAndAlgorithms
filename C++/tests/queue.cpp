@@ -47,3 +47,8 @@ TEST(Queue, isEmpty) {
 
     ASSERT_FALSE(testee.isEmpty());
 }
+
+TEST(QueueRelatedAlgorithms, hotPotato) {
+    auto names = std::vector<std::string>({"Bill", "David", "Susan", "Jane", "Kent", "Brad"});
+    ASSERT_EQ("Susan", hotPotato(names, 7));
+}

@@ -1,4 +1,4 @@
-from queue import Queue
+from queue import Queue, hot_potato
 import unittest
 
 __author__ = 'Daniel'
@@ -39,3 +39,6 @@ class TestMain(unittest.TestCase):
         stack.enqueue("two")
 
         self.assertEquals(2, stack.size())
+
+    def test_hot_potato(self):
+        self.assertEquals("Susan", hot_potato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7))

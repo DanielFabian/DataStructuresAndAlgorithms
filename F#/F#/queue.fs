@@ -11,3 +11,14 @@ type Queue<'T>() =
         data.RemoveAt 0
         res
     member this.isEmpty = data.Count = 0
+
+let hotPotato names num =
+    let queue = Queue()
+    List.iter queue.enqueue names
+
+    while queue.size > 1 do
+        for i = 1 to num do
+            queue.enqueue(queue.dequeue())
+        queue.dequeue() |> ignore
+
+    queue.dequeue()

@@ -48,3 +48,10 @@ func Test_isEmpty(t *testing.T) {
         t.Errorf("After enqueueing the stack is no longer empty")
     }
 }
+
+func Test_hotPotato(t *testing.T) {
+    res := hotPotato([]string{"Bill","David","Susan","Jane","Kent","Brad"}, 7)
+    if res != "Susan" {
+        t.Errorf("hotPotato was %s, expected Susan", res)
+    }
+}

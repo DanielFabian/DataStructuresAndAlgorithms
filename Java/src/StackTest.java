@@ -1,10 +1,12 @@
-import junit.framework.TestCase;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * Created by Daniel on 31.03.2015.
  */
-public class StackTest extends TestCase {
+public class StackTest {
 
+    @Test
     public void testIsEmpty() throws Exception {
         Stack<Integer> testee = new Stack<>();
         assertTrue(testee.isEmpty());
@@ -14,6 +16,7 @@ public class StackTest extends TestCase {
         assertFalse(testee.isEmpty());
     }
 
+    @Test
     public void testSize() throws Exception {
         Stack<Integer> testee = new Stack<>();
 
@@ -25,6 +28,7 @@ public class StackTest extends TestCase {
         assertEquals(2, testee.size());
     }
 
+    @Test
     public void testPush() throws Exception {
         Stack<Integer> testee = new Stack<>();
         testee.push(1);
@@ -36,6 +40,7 @@ public class StackTest extends TestCase {
         assertEquals(3, testee.size());
     }
 
+    @Test
     public void testPop() throws Exception {
         Stack<Integer> testee = new Stack<>();
         testee.push(1);

@@ -1,4 +1,4 @@
-package main
+package Stack
 import "testing"
 
 func Test_size(t *testing.T) {

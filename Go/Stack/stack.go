@@ -1,4 +1,4 @@
-package main
+package Stack
 import (
     "fmt"
     "strings"

@@ -24,7 +24,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 AUX_SOURCE_DIRECTORY(. SOURCE_FILES)
 
 list(REMOVE_ITEM SOURCE_FILES main.cpp)
-add_library(c++implementation ${SOURCE_FILES} trivial.h trivial.cpp)
+add_library(c++implementation ${SOURCE_FILES})
 add_executable(c++ main.cpp)
 target_link_libraries(c++ c++implementation)
 
@@ -33,7 +33,7 @@ target_link_libraries(c++ c++implementation)
 ################################
 # Add test cpp file
 aux_source_directory(tests TEST_SOURCE_FILES)
-add_executable(c++tests ${TEST_SOURCE_FILES} tests/main.cpp tests/benchmark.h tests/benchmark.cpp)
+add_executable(c++tests ${TEST_SOURCE_FILES})
 # Link test executable against gtest & gtest_main
 
 target_link_libraries(c++tests gtest gtest_main c++implementation)

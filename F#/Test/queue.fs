@@ -29,3 +29,5 @@ let [<Test>] ``isEmpty should be correct`` () =
     testee.isEmpty |> should equal false
 
 
+let [<Test>] hotPotato () =
+    hotPotato ["Bill";"David";"Susan";"Jane";"Kent";"Brad"] 7 |> should equal "Susan"

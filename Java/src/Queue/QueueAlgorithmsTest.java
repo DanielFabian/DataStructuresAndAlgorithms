@@ -1,3 +1,5 @@
+package Queue;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -10,6 +12,11 @@ public class QueueAlgorithmsTest {
     public void testHotPotato() throws Exception {
         String[] names = new String[]{"Bill", "David", "Susan", "Jane", "Kent", "Brad"};
         assertEquals("Susan", QueueAlgorithms.hotPotato(names, 7));
+
+    }
+
+    @Test
+    public void testPrintQueue() throws Exception {
 
     }
 }

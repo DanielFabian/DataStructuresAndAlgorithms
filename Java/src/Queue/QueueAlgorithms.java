@@ -1,9 +1,11 @@
+package Queue;
+
 /**
  * Created by Daniel on 05.04.2015.
  */
 public class QueueAlgorithms {
     public static String hotPotato(String[] names, int num) {
-        Queue<String> queue = new Queue<>();
+        Queue<String> queue = new Queue<String>();
         for (String name : names) {
             queue.enqueue(name);
         }

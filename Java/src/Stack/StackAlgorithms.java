@@ -1,3 +1,5 @@
+package Stack;
+
 import java.util.ArrayList;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
@@ -7,7 +9,7 @@ import java.util.function.Consumer;
  */
 public class StackAlgorithms {
     public static boolean checkParentheses(String str) {
-        Stack<Character> stack = new Stack<>();
+        Stack<Character> stack = new Stack<Character>();
         for (Character c : str.toCharArray()) {
             if (c == ')' || c == ']' || c == '}' || c == '>') {
                 if (stack.isEmpty() || stack.pop() != c)
@@ -27,7 +29,7 @@ public class StackAlgorithms {
 
     static String toBase(int num, int base) {
         char[] digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-        Stack<Character> stack = new Stack<>();
+        Stack<Character> stack = new Stack<Character>();
         while (num > 0) {
             stack.push(digits[num % base]);
             num /= base;
@@ -43,7 +45,7 @@ public class StackAlgorithms {
 
     public static String toPostfix(String str) {
         String[] tokens = str.split(" ");
-        Stack<String> operators = new Stack<>();
+        Stack<String> operators = new Stack<String>();
         ArrayList<String> res = new ArrayList<>();
 
         for (String token : tokens) {
@@ -91,7 +93,7 @@ public class StackAlgorithms {
 
     public static Integer evalPostfix(String s) {
         String[] tokens = s.split(" ");
-        Stack<Integer> evalStack = new Stack<>();
+        Stack<Integer> evalStack = new Stack<Integer>();
 
         Consumer<BinaryOperator<Integer>> eval = (binOp) -> {
             Integer right = evalStack.pop();

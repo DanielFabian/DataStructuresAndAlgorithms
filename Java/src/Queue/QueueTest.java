@@ -1,3 +1,6 @@
+package Queue;
+
+import Queue.Queue;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +12,7 @@ public class QueueTest {
 
     @Test
     public void testIsEmpty() throws Exception {
-        Queue<Integer> testee = new Queue<>();
+        Queue<Integer> testee = new Queue<Integer>();
         assertTrue(testee.isEmpty());
 
         testee.enqueue(1);
@@ -19,7 +22,7 @@ public class QueueTest {
 
     @Test
     public void testSize() throws Exception {
-        Queue<Integer> testee = new Queue<>();
+        Queue<Integer> testee = new Queue<Integer>();
 
         assertEquals(0, testee.size());
 
@@ -31,7 +34,7 @@ public class QueueTest {
 
     @Test
     public void testEnqueue() throws Exception {
-        Queue<Integer> testee = new Queue<>();
+        Queue<Integer> testee = new Queue<Integer>();
         testee.enqueue(1);
         testee.enqueue(2);
         testee.enqueue(3);
@@ -40,7 +43,7 @@ public class QueueTest {
 
     @Test
     public void testDequeue() throws Exception {
-        Queue<Integer> testee = new Queue<>();
+        Queue<Integer> testee = new Queue<Integer>();
         testee.enqueue(1);
         testee.enqueue(2);
         testee.enqueue(3);

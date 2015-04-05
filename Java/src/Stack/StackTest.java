@@ -1,3 +1,5 @@
+package Stack;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -8,7 +10,7 @@ public class StackTest {
 
     @Test
     public void testIsEmpty() throws Exception {
-        Stack<Integer> testee = new Stack<>();
+        Stack<Integer> testee = new Stack<Integer>();
         assertTrue(testee.isEmpty());
 
         testee.push(1);
@@ -18,7 +20,7 @@ public class StackTest {
 
     @Test
     public void testSize() throws Exception {
-        Stack<Integer> testee = new Stack<>();
+        Stack<Integer> testee = new Stack<Integer>();
 
         assertEquals(0, testee.size());
 
@@ -30,7 +32,7 @@ public class StackTest {
 
     @Test
     public void testPush() throws Exception {
-        Stack<Integer> testee = new Stack<>();
+        Stack<Integer> testee = new Stack<Integer>();
         testee.push(1);
         assertEquals(new Integer(1), testee.peek());
         testee.push(2);
@@ -42,7 +44,7 @@ public class StackTest {
 
     @Test
     public void testPop() throws Exception {
-        Stack<Integer> testee = new Stack<>();
+        Stack<Integer> testee = new Stack<Integer>();
         testee.push(1);
         testee.push(2);
         testee.push(3);

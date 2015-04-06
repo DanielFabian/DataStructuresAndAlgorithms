@@ -55,3 +55,10 @@ func Test_hotPotato(t *testing.T) {
         t.Errorf("hotPotato was %s, expected Susan", res)
     }
 }
+
+func Test_printQueue(t *testing.T) {
+    print("\n")
+    for i := 0; i < 10; i++ {
+        printQueue(3600, 5)
+    }
+}

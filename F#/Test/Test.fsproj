@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="stack.fs" />
     <Compile Include="queue.fs" />
+    <Compile Include="dequeue.fs" />
     <Compile Include="main.fs" />
     <Content Include="packages.config" />
     <Content Include="App.config" />

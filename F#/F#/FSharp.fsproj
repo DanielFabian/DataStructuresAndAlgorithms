@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="stack.fs" />
     <Compile Include="queue.fs" />
+    <Compile Include="dequeue.fs" />
     <Compile Include="main.fs" />
     <None Include="App.config" />
   </ItemGroup>

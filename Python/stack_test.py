@@ -6,31 +6,31 @@ __author__ = 'Daniel'
 
 class TestMain(unittest.TestCase):
     def test_push(self):
-        stack = Stack()
-        stack.push(1)
-        stack.push("two")
-        stack.push(3.0)
-        self.assertEquals([1, "two", 3.0], stack.items)
+        testee = Stack()
+        testee.push(1)
+        testee.push("two")
+        testee.push(3.0)
+        self.assertEquals([1, "two", 3.0], testee.items)
 
     def test_peek(self):
-        stack = Stack()
-        stack.push(1)
-        stack.push("two")
-        self.assertEquals([1, "two"], stack.items)
+        testee = Stack()
+        testee.push(1)
+        testee.push("two")
+        self.assertEquals([1, "two"], testee.items)
 
-        self.assertEquals("two", stack.peek())
+        self.assertEquals("two", testee.peek())
 
-        self.assertEquals([1, "two"], stack.items)
+        self.assertEquals([1, "two"], testee.items)
 
     def test_pop(self):
-        stack = Stack()
-        stack.push(1)
-        stack.push("two")
-        self.assertEquals([1, "two"], stack.items)
+        testee = Stack()
+        testee.push(1)
+        testee.push("two")
+        self.assertEquals([1, "two"], testee.items)
 
-        self.assertEquals("two", stack.pop())
+        self.assertEquals("two", testee.pop())
 
-        self.assertEquals([1], stack.items)
+        self.assertEquals([1], testee.items)
 
     def test_is_empty(self):
         stack = Stack()
@@ -41,14 +41,14 @@ class TestMain(unittest.TestCase):
         self.assertEquals(False, stack.is_empty())
 
     def test_size(self):
-        stack = Stack()
+        testee = Stack()
 
-        self.assertEquals(0, stack.size())
+        self.assertEquals(0, testee.size())
 
-        stack.push(1)
-        stack.push("two")
+        testee.push(1)
+        testee.push("two")
 
-        self.assertEquals(2, stack.size())
+        self.assertEquals(2, testee.size())
 
     def test_parentheses(self):
         tests = [

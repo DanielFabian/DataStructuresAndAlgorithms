@@ -1,6 +1,6 @@
-﻿module FSharp.Dequeue
+﻿module FSharp.Deque
 
-type Dequeue<'T>() =
+type Deque<'T>() =
     let data = ResizeArray<'T>()
     
     member this.addFront item = 
@@ -21,3 +21,16 @@ type Dequeue<'T>() =
     
     member this.size () = data.Count
 
+
+let palchecker word =
+    let deque = Deque()
+    word |> Seq.iter deque.addRear
+
+    let rec loop () =
+        if deque.size() > 1 then
+            if deque.removeFront() <> deque.removeRear() then
+                false
+            else loop ()
+        else true
+
+    loop ()

@@ -1,4 +1,4 @@
-package Dequeue;
+package Deque;
 
 import org.junit.Test;
 
@@ -7,11 +7,11 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Daniel on 4/5/2015.
  */
-public class DequeueTest {
+public class DequeTest {
 
     @Test
     public void testSize() throws Exception {
-        Dequeue<Integer> testee = new Dequeue<Integer>();
+        Deque<Integer> testee = new Deque<Integer>();
         assertEquals(0, testee.size());
 
         testee.addFront(1);
@@ -21,7 +21,7 @@ public class DequeueTest {
 
     @Test
     public void testAddFront() throws Exception {
-        Dequeue<Integer> testee = new Dequeue<Integer>();
+        Deque<Integer> testee = new Deque<Integer>();
         testee.addFront(1);
         testee.addFront(2);
         testee.addFront(3);
@@ -30,7 +30,7 @@ public class DequeueTest {
 
     @Test
     public void testAddRear() throws Exception {
-        Dequeue<Integer> testee = new Dequeue<Integer>();
+        Deque<Integer> testee = new Deque<Integer>();
         testee.addRear(1);
         testee.addRear(2);
         testee.addRear(3);
@@ -39,7 +39,7 @@ public class DequeueTest {
 
     @Test
     public void testRemoveFront() throws Exception {
-        Dequeue<Integer> testee = new Dequeue<Integer>();
+        Deque<Integer> testee = new Deque<Integer>();
         testee.addRear(1);
         testee.addRear(2);
         testee.addRear(3);
@@ -48,4 +48,5 @@ public class DequeueTest {
         assertEquals(new Integer(3), testee.removeFront());
         assertEquals(0, testee.size());
     }
+
 }

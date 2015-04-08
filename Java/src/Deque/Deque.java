@@ -1,11 +1,11 @@
-package Dequeue;
+package Deque;
 
 import java.util.ArrayList;
 
 /**
  * Created by Daniel on 07.04.2015.
  */
-public class Dequeue<T> {
+public class Deque<T> {
     private final ArrayList<T> data = new ArrayList<>();
     public int size() {
         return data.size();

@@ -2,14 +2,15 @@
 // Created by Daniel on 06.04.2015.
 //
 
-#ifndef C_DEQUEUE_H
-#define C_DEQUEUE_H
+#ifndef C_DEQUE_H
+#define C_DEQUE_H
 
 #include <vector>
+#include <string>
 #include <cstdlib>
 
 template <class T>
-class dequeue {
+class deque {
 private:
     std::vector<T> data;
 public:
@@ -21,32 +22,34 @@ public:
 };
 
 template <class T>
-size_t dequeue<T>::size() {
+size_t deque<T>::size() {
     return data.size();
 }
 
 template <class T>
-void dequeue<T>::addFront(T const &item) {
+void deque<T>::addFront(T const &item) {
     data.insert(data.begin(), item);
 }
 
 template <class T>
-void dequeue<T>::addRear(T const &item) {
+void deque<T>::addRear(T const &item) {
     data.push_back(item);
 }
 
 template <class T>
-T dequeue<T>::removeFront() {
+T deque<T>::removeFront() {
     auto res = data.front();
     data.erase(data.begin());
     return res;
 }
 
 template <class T>
-T dequeue<T>::removeRear() {
+T deque<T>::removeRear() {
     auto res = data.back();
     data.pop_back();
     return res;
 }
 
-#endif //C_DEQUEUE_H
+bool palchecker(std::string word);
+
+#endif //C_DEQUE_H

@@ -3,18 +3,18 @@
 //
 
 #include "gtest/gtest.h"
-#include "../dequeue.h"
+#include "../deque.h"
 
-TEST(Dequeue, size) {
-    auto testee = dequeue<int>();
+TEST(Deque, size) {
+    auto testee = deque<int>();
     ASSERT_EQ(0u, testee.size());
     testee.addFront(1);
     ASSERT_EQ(1u, testee.size());
 }
 
 
-TEST(Dequeue, addFront) {
-    auto testee = dequeue<int>();
+TEST(Deque, addFront) {
+    auto testee = deque<int>();
     testee.addFront(1);
     testee.addFront(2);
     testee.addFront(3);
@@ -22,8 +22,8 @@ TEST(Dequeue, addFront) {
 }
 
 
-TEST(Dequeue, addRear) {
-    auto testee = dequeue<int>();
+TEST(Deque, addRear) {
+    auto testee = deque<int>();
     testee.addRear(1);
     testee.addRear(2);
     testee.addRear(3);
@@ -32,8 +32,8 @@ TEST(Dequeue, addRear) {
 }
 
 
-TEST(Dequeue, removeFront) {
-    auto testee = dequeue<int>();
+TEST(Deque, removeFront) {
+    auto testee = deque<int>();
     testee.addRear(1);
     testee.addRear(2);
     testee.addRear(3);
@@ -42,4 +42,9 @@ TEST(Dequeue, removeFront) {
     ASSERT_EQ(2, testee.removeFront());
     ASSERT_EQ(3, testee.removeFront());
     ASSERT_EQ(0u, testee.size());
+}
+
+TEST(DequeReplatedAlgorithms, palchecker) {
+    ASSERT_FALSE(palchecker("lsdkjfskf"));
+    ASSERT_TRUE(palchecker("radar"));
 }

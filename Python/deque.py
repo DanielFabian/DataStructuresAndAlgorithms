@@ -1,7 +1,7 @@
 __author__ = 'Daniel'
 
 
-class Dequeue:
+class Deque:
     def __init__(self):
         self.data = []
 
@@ -19,3 +19,15 @@ class Dequeue:
 
     def size(self):
         return len(self.data)
+
+
+def palchecker(word):
+    deque = Deque()
+    for c in word:
+        deque.add_rear(c)
+
+    while deque.size() > 1:
+        if deque.remove_front() != deque.remove_rear():
+            return False
+
+    return True
